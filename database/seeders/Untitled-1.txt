@@ -1,0 +1,182 @@
+namespace Database\Seeders;
+
+use Illuminate\Database\Seeder;
+use App\Models\Customer;
+
+class CustomerSeeder extends Seeder
+{
+    public function run(): void
+    {
+        Customer::create([
+            'name' => 'John Doe',
+            'email' => 'john@example.com',
+            'phone' => '1234567890',
+            'status' => 'active',
+        ]);
+
+        Customer::create([
+            'name' => 'Jane Smith',
+            'email' => 'jane@example.com',
+            'phone' => '0987654321',
+            'status' => 'lead',
+        ]);
+    }
+}// ========================================
+// USERS MIGRATION
+// Use your existing create_users_table migration.
+// ========================================
+
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    public function up(): void
+    {
+        Schema::create('users', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->string('email')->unique();
+            $table->timestamp('email_verified_at')->nullable();
+            $table->string('password');
+            $table->string('role')->default('staff');
+            $table->rememberToken();
+            $table->timestamps();
+        });
+    }
+
+    public function down(): void
+    {
+        Schema::dropIfExists('users');
+    }
+};
+
+
+// ========================================
+// CUSTOMERS MIGRATION
+// database/migrations/YYYY_MM_DD_HHMMSS_create_customers_table.php
+// ========================================
+
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    public function up(): void
+    {
+        Schema::create('customers', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->string('email')->unique();
+            $table->string('phone')->nullable();
+            $table->string('status')->default('active');
+            $table->timestamps();
+        });
+    }
+
+    public function down(): void
+    {
+        Schema::dropIfExists('customers');
+    }
+};
+
+
+// ========================================
+// database/seeders/UserSeeder.php
+// ========================================
+
+<?php
+
+namespace Database\Seeders;
+
+use App\Models\User;
+use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
+
+class UserSeeder extends Seeder
+{
+    public function run(): void
+    {
+        User::updateOrCreate(
+            ['email' => 'admin@example.com'],
+            [
+                'name' => 'Admin User',
+                'password' => Hash::make('password'),
+                'role' => 'admin',
+            ]
+        );
+
+        User::updateOrCreate(
+            ['email' => 'staff@example.com'],
+            [
+                'name' => 'Staff Member',
+                'password' => Hash::make('password'),
+                'role' => 'staff',
+            ]
+        );
+    }
+}
+
+
+// ========================================
+// database/seeders/CustomerSeeder.php
+// ========================================
+
+<?php
+
+namespace Database\Seeders;
+
+use App\Models\Customer;
+use Illuminate\Database\Seeder;
+
+class CustomerSeeder extends Seeder
+{
+    public function run(): void
+    {
+        Customer::updateOrCreate(
+            ['email' => 'john@example.com'],
+            [
+                'name' => 'John Doe',
+                'phone' => '09171234567',
+                'status' => 'active',
+            ]
+        );
+
+        Customer::updateOrCreate(
+            ['email' => 'jane@example.com'],
+            [
+                'name' => 'Jane Smith',
+                'phone' => '09181234567',
+                'status' => 'lead',
+            ]
+        );
+    }
+}
+
+
+// ========================================
+// database/seeders/DatabaseSeeder.php
+// ========================================
+
+<?php
+
+namespace Database\Seeders;
+
+use Illuminate\Database\Seeder;
+
+class DatabaseSeeder extends Seeder
+{
+    public function run(): void
+    {
+        $this->call([
+            UserSeeder::class,
+            CustomerSeeder::class,
+        ]);
+    }
+}

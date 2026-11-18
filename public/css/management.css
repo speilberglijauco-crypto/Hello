@@ -1,0 +1,251 @@
+.management-page {
+    min-height: 100vh;
+    margin: 0;
+    background: #f1f5f9;
+    color: #1e293b;
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+.management-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    padding: 1rem max(1.25rem, calc((100% - 1080px) / 2));
+    background: #0f172a;
+    box-shadow: 0 2px 8px rgb(15 23 42 / 15%);
+}
+
+.management-nav a {
+    padding: 0.55rem 0.85rem;
+    border-radius: 0.5rem;
+    color: #cbd5e1;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background-color 150ms ease, color 150ms ease;
+}
+
+.management-nav a:hover,
+.management-nav a:focus-visible {
+    background: #1e293b;
+    color: #fff;
+}
+
+.management-content {
+    width: min(1080px, calc(100% - 2rem));
+    margin: 2.5rem auto;
+}
+
+.page-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.management-page h1 {
+    margin: 0;
+    color: #0f172a;
+    font-size: clamp(1.6rem, 3vw, 2rem);
+    font-weight: 700;
+    letter-spacing: -0.035em;
+}
+
+.page-subtitle {
+    margin: 0.4rem 0 0;
+    color: #64748b;
+}
+
+.button-link,
+.management-page form button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 2.65rem;
+    padding: 0.65rem 1rem;
+    border: 0;
+    border-radius: 0.6rem;
+    background: #2563eb;
+    color: #fff;
+    font: inherit;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 150ms ease, transform 150ms ease;
+}
+
+.button-link:hover,
+.management-page form button:hover {
+    background: #1d4ed8;
+    transform: translateY(-1px);
+}
+
+.button-link--secondary {
+    border: 1px solid #cbd5e1;
+    background: #fff;
+    color: #334155;
+}
+
+.button-link--secondary:hover {
+    background: #f8fafc;
+    color: #0f172a;
+}
+
+.table-wrap,
+.management-page form,
+.detail-card {
+    overflow: hidden;
+    border: 1px solid #e2e8f0;
+    border-radius: 0.9rem;
+    background: #fff;
+    box-shadow: 0 10px 24px rgb(15 23 42 / 5%);
+}
+
+.table-wrap {
+    overflow-x: auto;
+}
+
+.management-page table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.management-page th,
+.management-page td {
+    padding: 0.9rem 1rem;
+    border-bottom: 1px solid #e2e8f0;
+    white-space: nowrap;
+}
+
+.management-page th {
+    background: #f8fafc;
+    color: #64748b;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+}
+
+.management-page tbody tr:last-child td {
+    border-bottom: 0;
+}
+
+.management-page tbody tr:hover {
+    background: #f8fafc;
+}
+
+.management-page td a {
+    color: #2563eb;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.management-page td a:hover {
+    text-decoration: underline;
+}
+
+.management-page td img,
+.detail-card img {
+    width: 3.25rem;
+    height: 3.25rem;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.management-page form {
+    max-width: 680px;
+    padding: 1.5rem;
+}
+
+.form-field {
+    margin-bottom: 1.15rem;
+}
+
+.form-field label {
+    display: block;
+    margin-bottom: 0.45rem;
+    color: #334155;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.form-field input {
+    box-sizing: border-box;
+    width: 100%;
+    min-height: 2.75rem;
+    padding: 0.65rem 0.75rem;
+    border: 1px solid #cbd5e1;
+    border-radius: 0.55rem;
+    background: #fff;
+    color: #0f172a;
+    font: inherit;
+}
+
+.form-field input[type="file"] {
+    height: auto;
+}
+
+.form-field input:focus {
+    border-color: #3b82f6;
+    outline: 3px solid rgb(59 130 246 / 15%);
+}
+
+.form-field small {
+    display: block;
+    margin-top: 0.4rem;
+    color: #64748b;
+}
+
+.form-errors {
+    max-width: 680px;
+    margin: 0 0 1rem;
+    padding: 0.8rem 1rem;
+    border: 1px solid #fecaca;
+    border-radius: 0.65rem;
+    background: #fef2f2;
+    color: #b91c1c;
+}
+
+.form-errors ul {
+    margin: 0;
+    padding-left: 1.25rem;
+}
+
+.detail-card {
+    max-width: 680px;
+    padding: 1.5rem;
+}
+
+.detail-card p {
+    margin: 0 0 0.85rem;
+    color: #475569;
+}
+
+.detail-card strong {
+    color: #0f172a;
+}
+
+.about-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 1.25rem;
+}
+
+@media (max-width: 600px) {
+    .management-content {
+        margin: 1.5rem auto;
+    }
+
+    .page-heading {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .management-page form,
+    .detail-card {
+        padding: 1rem;
+    }
+}
